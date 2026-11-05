@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/** Expected columns: type,id,maxLoadKg,rangeKm. */
+/** Expected columns: type,id,maxLoadKg,rangeKm.
+ *  Everything is validated at loading time. */
 public class CsvVehicleRepository implements VehicleRepository {
 
     private static final int EXPECTED_COLUMNS = 4;
@@ -20,7 +21,7 @@ public class CsvVehicleRepository implements VehicleRepository {
         List<String[]> rows = CsvParser.toRows(lines);
         for (int i = 0; i < rows.size(); i++) {
             Vehicle vehicle = parseVehicle(rows.get(i), i + 1);
-            if (findById(vehicle.getId()).isPresent()) {
+            if (vehicles.contains(vehicle)) { // relies on Vehicle.equals
                 throw new DataLoadException("Vehicle row " + (i + 1) + ": duplicate id " + vehicle.getId());
             }
             vehicles.add(vehicle);
@@ -37,7 +38,7 @@ public class CsvVehicleRepository implements VehicleRepository {
             int rangeKm = Integer.parseInt(row[3]);
             return VehicleFactory.create(row[0], row[1], maxLoadKg, rangeKm);
         } catch (IllegalArgumentException e) {
-            // NumberFormatException is a subclass of IllegalArgumentException so one catch covers
+            // Subclass of IllegalArgumentException so one catch covers
             // both a non-numeric value and a value refused by the Vehicle constructor or the factory.
             throw new DataLoadException("Vehicle row " + rowNumber + ": " + e.getMessage(), e);
         }
@@ -45,7 +46,7 @@ public class CsvVehicleRepository implements VehicleRepository {
 
     @Override
     public List<Vehicle> findAll() {
-        return new ArrayList<>(vehicles); // copy so callers cannot modify our internal list
+        return new ArrayList<>(vehicles); // Callers cannot modify our internal list
     }
 
     @Override

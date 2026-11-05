@@ -5,10 +5,8 @@ import com.junia.fleetdispatch.model.Vehicle;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -30,17 +28,19 @@ class CsvVehicleRepositoryTest {
     void shouldFindVehicleById() throws DataLoadException {
         VehicleRepository repository = new CsvVehicleRepository(List.of(HEADER, "VAN,VN-1,800,400"));
 
-        Optional<Vehicle> found = repository.findById("VN-1");
+        Vehicle found = repository.findById("VN-1")
+                .orElseThrow(() -> new IllegalStateException("VN-1 should have been found"));
 
-        assertTrue(found.isPresent());
-        assertEquals(800, found.get().getMaxLoadKg(), 0.001);
+        assertEquals(800, found.getMaxLoadKg(), 0.001);
     }
 
     @Test
     void shouldReturnEmptyOptionalForUnknownId() throws DataLoadException {
         VehicleRepository repository = new CsvVehicleRepository(List.of(HEADER, "VAN,VN-1,800,400"));
 
-        assertFalse(repository.findById("NOPE").isPresent());
+        String result = repository.findById("NOPE").map(Vehicle::getId).orElse("none");
+
+        assertEquals("none", result);
     }
 
     @Test

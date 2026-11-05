@@ -4,8 +4,8 @@ package com.junia.fleetdispatch.model;
  * Base of every vehicle of the fleet.
  *
  * It is abstract because a "generic vehicle" does not exist in the real world
- * only drones, vans and bikes do. It holds the state and the rules shared by all
- * of them while each subclass defines its own cost.
+ * like drones, vans and bikes do. It holds the state and the rules shared by all
+ * of them while each subclass defines its own cost and depending of the case its own handling restrictions.
  */
 public abstract class Vehicle {
 
@@ -28,7 +28,7 @@ public abstract class Vehicle {
         this.id = id;
         this.maxLoadKg = maxLoadKg;
         this.maxRangeKm = maxRangeKm;
-        this.remainingRangeKm = maxRangeKm; // a new vehicle starts fully charged
+        this.remainingRangeKm = maxRangeKm; // a new vehicle starts fully charged / fuelled
         this.busy = false;
     }
 
@@ -41,6 +41,25 @@ public abstract class Vehicle {
 
     public boolean canTravel(double distanceKm) {
         return distanceKm >= 0 && distanceKm <= remainingRangeKm;
+    }
+
+    /**
+     * Single entry point to know whether this vehicle can take a parcel for a trip of tripKm.
+     * The services call this method and never need to know the rules of each vehicle type.
+     */
+    public boolean canDeliver(Parcel parcel, double tripKm) {
+        return !busy
+                && canCarry(parcel.getWeightKg())
+                && canTravel(tripKm)
+                && acceptsHandling(parcel);
+    }
+
+    /**
+     * Extra restrictions on the kind of parcel. By default a vehicle accepts everything
+     * subclasses override it when they have a specific limitation.
+     */
+    protected boolean acceptsHandling(Parcel parcel) {
+        return true;
     }
 
     public void consumeRange(double distanceKm) {
@@ -67,7 +86,7 @@ public abstract class Vehicle {
 
     /**
      * Subclasses call this from recharge() / refuel(). The field stays private
-     * so only the Vehicle class itself decides how its range changes.
+     * Only the Vehicle class itself decides how its range changes.
      */
     protected void restoreFullRange() {
         remainingRangeKm = maxRangeKm;
@@ -93,7 +112,8 @@ public abstract class Vehicle {
         return busy;
     }
 
-    // Two vehicles are the same if they have the same id: the id identifies a vehicle in the fleet.
+    // Two vehicles are the same if they have the same id
+    // the id identifies a vehicle in the fleet
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
