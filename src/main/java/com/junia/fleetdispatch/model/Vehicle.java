@@ -5,7 +5,7 @@ package com.junia.fleetdispatch.model;
  *
  * It is abstract because a "generic vehicle" does not exist in the real world
  * only drones, vans and bikes do. It holds the state and the rules shared by all
- * of them (load, range, availability) while each subclass defines its own cost.
+ * of them while each subclass defines its own cost.
  */
 public abstract class Vehicle {
 
@@ -67,7 +67,7 @@ public abstract class Vehicle {
 
     /**
      * Subclasses call this from recharge() / refuel(). The field stays private
-     * (encapsulation), only the Vehicle class itself decides how its range changes.
+     * so only the Vehicle class itself decides how its range changes.
      */
     protected void restoreFullRange() {
         remainingRangeKm = maxRangeKm;
