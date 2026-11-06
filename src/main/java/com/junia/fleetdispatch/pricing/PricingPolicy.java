@@ -3,8 +3,8 @@ package com.junia.fleetdispatch.pricing;
 import com.junia.fleetdispatch.model.Parcel;
 
 /**
- * How a delivery is priced. Here Adding a new way of pricing means adding a new class
- * without modifying the existing ones or the service that uses them.
+ * Defines how the price of a delivery is calculated.
+ * A new pricing method can be added through another class without changing the existing code or the service using it.
  */
 public interface PricingPolicy {
 

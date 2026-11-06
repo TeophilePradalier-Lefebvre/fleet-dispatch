@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Read the lines of a file. It knows nothing about vehicles or parcels
- * and the repositories know nothing about files so each can change independently.
+ * and the repositories know nothing about files.
  */
 public class CsvFileReader {
 

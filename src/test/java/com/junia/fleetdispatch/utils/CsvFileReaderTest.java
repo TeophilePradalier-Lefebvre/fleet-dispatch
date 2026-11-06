@@ -27,7 +27,7 @@ class CsvFileReaderTest {
         assertTrue(e.getCause() instanceof java.io.IOException);
     }
 
-    // The two tests below check that the data files really shipped with the application are valid.
+    // The two tests below check that the data files really shipped with the application are valid
 
     @Test
     void shouldLoadTheShippedVehiclesFile() throws DataLoadException {
