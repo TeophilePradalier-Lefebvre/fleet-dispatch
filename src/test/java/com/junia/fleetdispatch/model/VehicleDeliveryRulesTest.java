@@ -19,7 +19,7 @@ class VehicleDeliveryRulesTest {
         lightParcel = new Parcel.Builder("P-1", 1, "NORTH").build();
     }
 
-    // --- normal situations ---
+    //Normal situations
 
     @Test
     void shouldDeliverWhenEveryRuleIsMet() {
@@ -45,7 +45,7 @@ class VehicleDeliveryRulesTest {
         assertFalse(drone.canDeliver(lightParcel, 41));
     }
 
-    // --- The drone has its own handling restriction ---
+    //The drone has its own handling restriction
 
     @Test
     void droneShouldRefuseHeavyFragileParcel() {
@@ -61,7 +61,7 @@ class VehicleDeliveryRulesTest {
         assertTrue(van.canDeliver(fragile, 10));
     }
 
-    // --- edge cases ---
+    //Edge cases
 
     @Test
     void droneShouldAcceptFragileParcelExactlyAtTheLimit() {

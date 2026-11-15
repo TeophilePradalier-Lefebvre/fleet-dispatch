@@ -21,7 +21,7 @@ class VehicleTest {
         van = new Van("VN-1", 800, 400);
     }
 
-    // --- normal situations ---
+    //Normal situations
 
     @Test
     void shouldCarryWeightBelowMaxLoad() {
@@ -64,7 +64,7 @@ class VehicleTest {
         assertEquals(new CargoBike("CB-1", 99, 99), bike);
     }
 
-    // --- edge cases ---
+    //Edge cases
 
     @Test
     void shouldCarryWeightExactlyEqualToMaxLoad() {
@@ -81,7 +81,7 @@ class VehicleTest {
         assertFalse(bike.canCarry(30.1));
     }
 
-    // --- invalid situations ---
+    //Invalid situations
 
     @Test
     void shouldRejectNegativeMaxLoad() {

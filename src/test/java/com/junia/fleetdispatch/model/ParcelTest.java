@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParcelTest {
 
-    // --- normal situations ---
+    //Normal situations
 
     @Test
     void shouldBuildParcelWithDefaultOptions() {
@@ -46,7 +46,7 @@ class ParcelTest {
         assertEquals(first, second);
     }
 
-    // --- edge cases ---
+    //Edge cases
 
     @Test
     void shouldAcceptVeryLightParcel() {
@@ -62,7 +62,7 @@ class ParcelTest {
         assertFalse(parcel.isInsured());
     }
 
-    // --- invalid situations ---
+    //Invalid situations
 
     @Test
     void shouldRejectZeroWeight() {

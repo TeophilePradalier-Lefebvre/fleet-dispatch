@@ -15,7 +15,7 @@ class CsvParcelRepositoryTest {
 
     private static final String HEADER = "id,weightKg,zone,fragile,express,insuredValue";
 
-    // --- normal situations ---
+    //Normal situations
 
     @Test
     void shouldLoadParcelWithItsOptions() throws DataLoadException {
@@ -44,7 +44,7 @@ class CsvParcelRepositoryTest {
         assertFalse(parcel.isInsured());
     }
 
-    // --- edge cases ---
+    //Edge cases
 
     @Test
     void shouldLoadNothingWhenFileHasOnlyAHeader() throws DataLoadException {
@@ -53,7 +53,7 @@ class CsvParcelRepositoryTest {
         assertTrue(repository.findAll().isEmpty());
     }
 
-    // --- invalid situations ---
+    //Invalid situations
 
     @Test
     void shouldFailOnNegativeWeight() {

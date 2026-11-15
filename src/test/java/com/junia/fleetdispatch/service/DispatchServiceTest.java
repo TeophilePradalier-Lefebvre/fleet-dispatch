@@ -48,7 +48,7 @@ class DispatchServiceTest {
         return new Parcel.Builder(id, weightKg, zone).build();
     }
 
-    // --- normal situations ---
+    //Normal situations
 
     @Test
     void shouldAssignTheCheapestVehicleThatCanDoTheJob() throws Exception {
@@ -144,7 +144,7 @@ class DispatchServiceTest {
         assertEquals(2, service.getDeliveries().size());
     }
 
-    // --- edge cases ---
+    //Edge cases
 
     @Test
     void shouldAcceptParcelExactlyAtTheMaxLoadOfTheBestVehicle() throws Exception {
@@ -163,7 +163,7 @@ class DispatchServiceTest {
         assertEquals("CB-1", second.getVehicle().getId());
     }
 
-    // --- invalid situations ---
+    //Ivalid situations
 
     @Test
     void shouldThrowWhenNoVehicleCanCarryTheParcel() {
@@ -212,7 +212,7 @@ class DispatchServiceTest {
         assertThrows(IllegalStateException.class, () -> service.completeDelivery(delivery));
     }
 
-    // --- good practice: failures are isolated ---
+    //Failures are isolated
 
     @Test
     void shouldContinueWithOtherParcelsWhenOneFails() {

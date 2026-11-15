@@ -30,7 +30,7 @@ class AssignmentStrategyTest {
         return strategy.select(vehicles).map(Vehicle::getId).orElse("none");
     }
 
-    // --- CheapestVehicleStrategy ---
+    //CheapestVehicleStrategy
 
     @Test
     void cheapestShouldPickTheLowestCostPerKm() {
@@ -49,7 +49,7 @@ class AssignmentStrategyTest {
         assertEquals("none", idOf(new CheapestVehicleStrategy(), List.of()));
     }
 
-    // --- SmallestFitStrategy ---
+    //SmallestFitStrategy
 
     @Test
     void smallestFitShouldPickTheSmallestMaxLoad() {

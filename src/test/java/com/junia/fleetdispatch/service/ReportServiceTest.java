@@ -45,7 +45,7 @@ class ReportServiceTest {
         return new Delivery(parcel, vehicle, 5, price, cost);
     }
 
-    // --- normal situations ---
+    //Normal situations
 
     @Test
     void shouldSumTheRevenueOfDeliveredParcelsOnly() {
@@ -87,7 +87,7 @@ class ReportServiceTest {
         assertEquals(2.0 / 3, report.utilizationRate(List.of(bike, drone, van), deliveries), 0.001);
     }
 
-    // --- edge cases ---
+    //Edge cases
 
     @Test
     void shouldReturnZeroTotalsWhenThereIsNoDelivery() {

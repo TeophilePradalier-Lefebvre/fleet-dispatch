@@ -14,7 +14,7 @@ class CsvVehicleRepositoryTest {
 
     private static final String HEADER = "type,id,maxLoadKg,rangeKm";
 
-    // --- normal situations ---
+    //Normal situations
 
     @Test
     void shouldLoadAllVehiclesFromLines() throws DataLoadException {
@@ -52,7 +52,7 @@ class CsvVehicleRepositoryTest {
         assertEquals(1, repository.findAll().size());
     }
 
-    // --- edge cases ---
+    //Edge cases
 
     @Test
     void shouldIgnoreEmptyLines() throws DataLoadException {
@@ -69,7 +69,7 @@ class CsvVehicleRepositoryTest {
         assertTrue(repository.findAll().isEmpty());
     }
 
-    // --- invalid situations ---
+    //Invalid situations
 
     @Test
     void shouldFailOnNonNumericValue() {

@@ -35,7 +35,7 @@ public class Application {
         try {
             run();
         } catch (DataLoadException e) {
-            // Without its data the application cannot work: we stop with a clear message.
+            // Without its data the application cannot work so we stop with a clear message.
             System.out.println("The application cannot start: " + e.getMessage());
         }
     }
@@ -56,13 +56,13 @@ public class Application {
         ReportService reportService = new ReportService();
         ConsoleView view = new ConsoleView();
 
-        // 3. Round 1: dispatch every parcel, choosing the cheapest vehicle
+        // 3. Dispatch every parcel, choosing the cheapest vehicle
         view.printTitle("Round 1 - cheapest vehicle strategy");
         DispatchSummary firstRound = dispatchService.dispatchAll(parcels.findAll());
         view.printSummary(firstRound);
         dispatchService.completeAllDeliveries();
 
-        // 4. Round 2: vehicles are back at the depot, retry the failed parcels with another strategy
+        // 4. Vehicles are back at the depot, retry the failed parcels with another strategy
         view.printTitle("Round 2 - retry failed parcels, smallest fit strategy");
         dispatchService.setAssignmentStrategy(new SmallestFitStrategy());
         DispatchSummary secondRound = dispatchService.dispatchAll(firstRound.getFailedParcels());

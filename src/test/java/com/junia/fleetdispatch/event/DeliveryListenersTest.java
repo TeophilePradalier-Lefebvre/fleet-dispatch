@@ -19,7 +19,7 @@ class DeliveryListenersTest {
         delivery = new Delivery(parcel, new Drone("DR-1", 5, 20), 5, 7.3, 4);
     }
 
-    // --- CustomerNotifier ---
+    //CustomerNotifier
 
     @Test
     void notifierShouldMentionParcelVehicleAndPriceWhenAssigned() {
@@ -52,7 +52,7 @@ class DeliveryListenersTest {
         assertEquals(1, notifier.getMessages().size());
     }
 
-    // --- AuditLog ---
+    //AuditLog
 
     @Test
     void auditLogShouldKeepEventsInOrder() {

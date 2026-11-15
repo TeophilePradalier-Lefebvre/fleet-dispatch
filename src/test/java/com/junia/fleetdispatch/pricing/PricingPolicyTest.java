@@ -12,7 +12,7 @@ class PricingPolicyTest {
     // base price of a 5 kg parcel over 10 km: 3.0 + 10 * 0.8 + 5 * 0.1 = 11.5
     private final Parcel plain = new Parcel.Builder("P-1", 5, "NORTH").build();
 
-    // --- StandardPricing ---
+    //StandardPricing
 
     @Test
     void shouldComputeStandardPrice() {
@@ -43,7 +43,7 @@ class PricingPolicyTest {
         assertThrows(IllegalArgumentException.class, () -> new StandardPricing().calculatePrice(plain, -1));
     }
 
-    // --- ExpressPricing ---
+    //ExpressPricing
 
     @Test
     void shouldMultiplyThePriceByOnePointFiveForExpress() {
@@ -60,7 +60,7 @@ class PricingPolicyTest {
         assertEquals(24.75, express.calculatePrice(fragileExpress, 10), 0.001);
     }
 
-    // --- PricingPolicyFactory ---
+    //PricingPolicyFactory
 
     @Test
     void factoryShouldChooseStandardPricingForANormalParcel() {

@@ -20,7 +20,7 @@ class LegacyDistanceAdapterTest {
         return new LegacyDistanceAdapter(new LegacyZoneService(lines));
     }
 
-    // --- normal situations ---
+    //Normal situations
 
     @Test
     void shouldConvertMilesToKilometres() throws Exception {
@@ -45,7 +45,7 @@ class LegacyDistanceAdapterTest {
         assertEquals(1.609, adapter.distanceKm("CENTER"), 0.001);
     }
 
-    // --- edge cases ---
+    //Edge cases
 
     @Test
     void shouldAcceptAZeroDistanceZone() throws Exception {
@@ -54,7 +54,7 @@ class LegacyDistanceAdapterTest {
         assertEquals(0, adapter.distanceKm("DEPOT"), 0.001);
     }
 
-    // --- invalid situations ---
+    //Invalid situations
 
     @Test
     void shouldTurnTheLegacyMinusOneIntoAnException() throws Exception {

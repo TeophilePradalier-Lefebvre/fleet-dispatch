@@ -2,8 +2,8 @@ package com.junia.fleetdispatch.exception;
 
 /**
  * Thrown when initial data cannot be loaded.
- * It is checked: the application cannot start correctly without its data so every caller
- * is forced to decide what to do, here it stop with a message.
+ * It is checked so the application cannot start correctly without its data so every caller
+ * is forced to decide what to do and here it stop with a message.
  */
 public class DataLoadException extends Exception {
 

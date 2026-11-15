@@ -2,7 +2,7 @@
 
 FleetDispatch is a Java application that dispatches deliveries. Parcels come in and a small fleet waits at the depot: drones, vans and electric cargo bikes. The application picks a vehicle for each parcel. It computes the price. It cleanly refuses the cases that cannot work.
 
-This is my final Object-Oriented Programming project (M1). I started from the delivery example seen in class (the `DeliveryPolicy`). I wanted a subject with real business rules that would not grow out of hand. Every class should be explainable in one sentence.
+This is my final Object-Oriented Programming project (M1). I started from the delivery example seen in class (the `DeliveryPolicy`). I wanted a subject with real business rules that would not grow out of hand.
 
 ## Running the project
 
@@ -61,7 +61,7 @@ The demo handles eight parcels. In the first round six are assigned and two are 
 
 **An Adapter for distances.** `LegacyZoneService` speaks in miles and returns -1 for an unknown zone. The adapter converts to kilometres and throws an `UnknownZoneException`. The rest of the code never sees the old format.
 
-**No Singleton.** It hides dependencies and makes tests harder. Everything is built in one single place (`Application`) and then passed through constructors.
+**No Singleton.** It hides dependencies and makes tests harder. Everything is built in one single place ( in`Application`) and then passed through constructors.
 
 ## Where inheritance is used
 
@@ -79,7 +79,7 @@ The pricing and assignment strategies follow the same principle. The service cal
 
 `Vehicle` is abstract. A generic vehicle does not exist in the domain and the class carries a state (load, range, busy flag) shared by the subclasses. An interface cannot carry that state.
 
-The interfaces describe contracts without state: `Rechargeable`, `Refuelable`, `PricingPolicy`, `AssignmentStrategy`, `DeliveryListener`, `DistanceProvider` and the two repositories. If I had to sum it up: abstract class when we share data. Interface when we share a capability.
+The interfaces describe contracts without state: `Rechargeable`, `Refuelable`, `PricingPolicy`, `AssignmentStrategy`, `DeliveryListener`, `DistanceProvider` and the two repositories. To sum it up I would say that we should use abstract class when we share data and Interface when we share a capability.
 
 ## Custom exceptions
 
@@ -124,7 +124,7 @@ In IntelliJ: right-click `src/test/java` then *Run 'All Tests'*. There are 146 t
 
 `ApplicationFlowTest` reuses the wiring of `Application` with the real files. It checks the full demo scenario.
 
-One practical detail to finish: package names must stay in lowercase. Windows ignores the case of folder names and Java does not.
+One practical detail to finish (but very important) : package names must stay in lowercase. Windows ignores the case of folder names and Java does not.
 
 ## Limits
 

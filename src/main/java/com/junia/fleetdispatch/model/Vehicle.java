@@ -3,9 +3,9 @@ package com.junia.fleetdispatch.model;
 /**
  * Base of every vehicle of the fleet.
  *
- * It is abstract because a "generic vehicle" does not exist in the real world
- * like drones, vans and bikes do. It holds the state and the rules shared by all
- * of them while each subclass defines its own cost and depending of the case its own handling restrictions.
+ * A "generic vehicle" does not exist in the real world so its abstract
+ * It holds the state and the rules shared by all the vehicules
+ * while each subclass defines its own cost and depending of the case its own handling restrictions.
  */
 public abstract class Vehicle {
 
